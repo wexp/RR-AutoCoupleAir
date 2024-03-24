@@ -1,0 +1,7 @@
+{
+  "manifestVersion": 1,
+  "id": "wexp.AutoCoupleAir",
+  "name": "AutoCoupleAir",
+  "version": "$(AssemblyVersion)",
+  "assemblies": [ "AutoCoupleAir" ]
+}
