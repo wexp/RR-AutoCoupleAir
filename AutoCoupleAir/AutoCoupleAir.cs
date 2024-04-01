@@ -1,12 +1,10 @@
-﻿using Game;
-using Game.Messages;
+﻿using Game.Messages;
 using Game.State;
 using HarmonyLib;
 using Model;
 using Model.AI;
-using RollingStock;
+using Network;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace AutoCoupleAir
@@ -28,7 +26,7 @@ namespace AutoCoupleAir
                 else { flag = false; }
             }
             else { flag = true; }
-            if (AutoAirCoupler.Settings.isEnabled && flag && StateManager.CheckAuthorizedToChangeProperty(StateManager.Shared.PlayersManager.LocalPlayer.PlayerId.String, Car.EndGearStateKey.Anglecock.ToString()) && (StateManager.IsHost || TrainController.Shared.SelectedCar.id == __instance.id))
+            if (Multiplayer.Mode == ConnectionMode.Singleplayer && AutoAirCoupler.Settings.isEnabled && flag)
             {
                 IEnumerable<Car> coupledCars = __instance.EnumerateCoupled();
 
@@ -36,21 +34,21 @@ namespace AutoCoupleAir
                 {
                     if (car.EndGearA.IsCoupled)
                     {
-                        car.EndGearA.Anglecock.GladhandClick();
+                        //car.EndGearA.Anglecock.GladhandClick();
                         var othercar = car.CoupledTo(Car.LogicalEnd.A);
-                        StateManager.ApplyLocal(new SetGladhandsConnected(car.id, othercar.id, true));
-                        if (car.EndGearA.IsAirConnected)
+                        if (othercar != null)
                         {
+                            StateManager.ApplyLocal(new SetGladhandsConnected(car.id, othercar.id, true));
                             car.ApplyEndGearChange(Car.LogicalEnd.A, Car.EndGearStateKey.Anglecock, 1f);
                         }
                     }
                     if (car.EndGearB.IsCoupled)
                     {
-                        car.EndGearB.Anglecock.GladhandClick();
+                        //car.EndGearB.Anglecock.GladhandClick();
                         var othercar = car.CoupledTo(Car.LogicalEnd.B);
-                        StateManager.ApplyLocal(new SetGladhandsConnected(car.id, othercar.id, true));
-                        if (car.EndGearA.IsAirConnected)
+                        if (othercar != null)
                         {
+                            StateManager.ApplyLocal(new SetGladhandsConnected(car.id, othercar.id, true));
                             car.ApplyEndGearChange(Car.LogicalEnd.B, Car.EndGearStateKey.Anglecock, 1f);
                         }
                     }

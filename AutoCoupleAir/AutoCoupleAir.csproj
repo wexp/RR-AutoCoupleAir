@@ -2,7 +2,7 @@
   <PropertyGroup>
     <!-- Optionally, set a few things to your liking -->
    <MajorVersion>1</MajorVersion>
-    <MinorVersion>0</MinorVersion>
+    <MinorVersion>1</MinorVersion>
   </PropertyGroup>
   <ItemGroup>
     <GameAssembly Include="Assembly-CSharp" />
@@ -11,5 +11,10 @@
 	<GameAssembly Include="0Harmony" />
     <GameAssembly Include="UnityEngine.CoreModule" />
 	<GameAssembly Include="KeyValue.Runtime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Definition">
+      <HintPath>D:\steam\steamapps\common\Railroader\Railroader_Data\Managed\Definition.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
