@@ -12,4 +12,4 @@ You will need to get Zamu's Railloader from https://railroader.stelltis.ch/, ins
 When that is done, drag this .zip onto Railloader.exe.
 
 # What about multiplayer?
-Should work fine in multiplayer, host does not need this installed to work.
+Only works in singleplayer games.
